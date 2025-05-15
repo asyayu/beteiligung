@@ -27,7 +27,7 @@ app.get('/dashboard', (req, res) => {
   });
 });
 
-app.listen(11527, () => {
-  console.log('Server running on port 11527');
+app.listen(5435, () => {
+  console.log('Server running on port 5435');
 });
 
