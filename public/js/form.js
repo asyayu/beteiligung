@@ -121,7 +121,7 @@ document.getElementById('visitorForm').addEventListener('submit', async function
     }
 
     try {
-        const response = await fetch('/beteiligung/new/visitor', {
+        const response = await fetch('/new/visitor', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
