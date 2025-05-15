@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beteiligungsdashboard</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+  <script src="js/d3.layout.cloud.min.js"></script>
+
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/ddmap.js" defer></script>
+  <script src="js/bar.js" defer></script>
+  <script src="js/pie.js" defer></script>
+  <script src="js/cloud.js" defer></script>
+  <script src="js/bubble.js" defer></script>
+  <script src="js/stackedbar.js" defer></script>
+  <script src="js/form.js" defer></script>
+  <script src="js/filter.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+
+
+  <div class="site-container" id="contentWrapper">
+    <div class="container-fluid">
+
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+          <a class="navbar-brand" href="#">
+            <img src="img/logo_LHD.png" alt="Right Logo" style="height: 60px;">
+          </a>
+
+          <div class="mx-auto text-center">
+            <a class="fs-2 navbar-brand" href="#">
+              <strong>Beteiligungsdashboard der Landeshauptstadt Dresden</strong>
+            </a>
+          </div>
+
+          <a class="navbar-brand" href="#">
+          </a>
+
+
+
+        </div>
+      </nav>
+
+
+
+
+      <div class="row row-cols-1 row-cols-xl-5 g-4 mx-3 py-2 d-flex justify-content-between">
+
+        <div class="col-xl-4">
+          <div class="card stat h-100">
+            <div class="card-body d-flex justify-content-center align-items-center h-100">
+              <a class="btn btn-dark btn-lg wiggle px-1 py-1 fs-2 w-100" data-bs-toggle="offcanvas"
+                href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                Hier klicken und Teil des Dashboards werden
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col">
+          <div class="card stat h-100">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="img/Icon_Statistik.svg" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" id="totalResponses">NA</h5>
+                  <p class="card-text">Besucher*innen haben teilgenommen</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card stat h-100">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="img/Icon_Familie.svg" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 id="averageAgeStat" class="card-title">NA</h5>
+                  <p class="card-text">ist das Durchschnittsalter</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card stat h-100">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="img/Icon_Haende.svg" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 id="percentParticipating" class="card-title">NA</h5>
+                  <p class="card-text">beteiligen sich regelmäßig</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <div class="dashboard-container">
+
+        <div class="diagram card border-secondary mb-1" id="my_mapviz">
+          <header class="card-header">Mein Wohnort (Stadtbezirk/Ortschaft)</header>
+          <svg class="diagram" id="map">
+          </svg>
+
+        </div>
+
+        <div class="diagram card border-secondary mb-3" id="pieChart">
+          <div class="card-header">Über welchen Weg habe ich die Stadtverwaltung bisher kontaktiert?</div>
+        </div>
+
+        <div class="diagram card border-secondary mb-3" id="my_dataviz">
+          <div class="card-header">Wie will ich die Stadtverwaltung in Zukunft erreichen?</div>
+        </div>
+
+        <div class="diagram card border-secondary mb-3" id="bubblemap">
+          <div class="card-header">Wie beteilige ich mich an der Stadtgestaltung?</div>
+        </div>
+
+
+
+        <div class="diagram card border-secondary mb-1" id="wordCloud">
+          <div class="card-header">Welche Beteiligungsformate kenne ich?</div>
+        </div>
+
+
+
+
+        <div class="diagram card border-secondary mb-1" id="stackedBar">
+          <div class="card-header">Will ich in Zukunft mehr digitale oder analoge Bürgerbeteiligung?</div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Willkommen im Stadtforum! Gestalten Sie Ihre
+          Stadt(verwaltung) mit!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="col-12">
+
+
+          <!-- Pagination Container -->
+          <div class="pagination-container">
+            <form id="visitorForm" autocomplete="off">
+              <div class="pagination-wrapper">
+
+                <!-- STEP 1 -->
+                <div class="pagination-step" id="step1">
+
+                  <div class="row justify-content-center mx-3 mt-0">
+                    <div class="alert alert-success text-center" role="alert" style="font-size: 0.9rem;">
+                      <p>Herzlich Willkommen in der "AGORA" im Stadtforum!</p>
+                      <p>In diesen Räumlichkeiten widmen wir uns zukünftig dem Thema
+                        <strong>Bürgerbeteiligung</strong>.<br>Bürgerbeteiligung ist eine großartige Möglichkeit,
+                        wichtige
+                        Themen
+                        anzusprechen und den Dresdnerinnen und Dresdnern eine Stimme zur Mitgestaltung zu geben. Wie
+                        stehen Sie
+                        dazu? Hier geht es zur Umfrage!
+                      </p>
+                      <p class="mb-0">Vielen Dank!<br>Das Team Bürgeranliegen der Landeshauptstadt Dresden</p>
+                    </div>
+                  </div>
+                  <div class="form-group">
+
+                    <!-- ALTER -->
+                    <div class="py-2">
+                      <label for="age" class="fs-5 form-label">1. Mein Alter:</label>
+                      <input type="number" id="age" name="age" min="0" max="110">
+                    </div>
+
+                    <!-- STADTBEZIRK -->
+                    <div class="py-2">
+                      <label for="stadtbezirk" class="fs-5 form-label">2. Mein Wohnort (Stadtbezirk/Ortschaft):</label>
+                      <select class="form-control" name="stadtbezirk" id="stadtbezirk">
+                        <% for (let district of cityDistricts.sort()) { %>
+                          <option value="<%= district %>">
+                            <%= district %>
+                          </option>
+                          <% } %>
+                      </select>
+
+                      <div class="form-check mt-2">
+                        <input type="checkbox" class="form-check-input" value="Nicht aus Dresden" id="notFromDD"
+                          name="notFromDD">
+                        <label for="notFromDD" class="form-check-label">Nicht aus Dresden</label>
+                      </div>
+                    </div>
+
+                    <!-- KANAL -->
+                    <div class="py-2">
+                      <label for="channel" class="fs-5 form-label d-block">3. Über welchen Weg habe ich die
+                        Stadtverwaltung bisher kontaktiert?</label>
+                      <div class="d-flex flex-wrap">
+                        <% for (let channel of channels) { %>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="channel_<%= channel %>" name="channel[]"
+                              value="<%= channel %>">
+                            <label class="form-label" for="channel_<%= channel %>">
+                              <%= channel %>
+                            </label>
+                          </div>
+                          <% } %>
+                      </div>
+                    </div>
+
+                    <!-- ERREICHEN IN ZUKUNFT -->
+                    <div class="py-2">
+                      <label for="futureReachMode" class="fs-5 form-label">4. Wie will ich die Stadtverwaltung in
+                        Zukunft
+                        erreichen?</label>
+                      <div class="d-flex flex-wrap">
+                        <% for (let futureReachMode of futureReach) { %>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="future_<%= futureReachMode %>"
+                              name="futureReachMode[]" value="<%= futureReachMode %>">
+                            <label class="form-label" for="future_<%= futureReachMode %>">
+                              <%= futureReachMode %>
+                            </label>
+                          </div>
+                          <% } %>
+                      </div>
+                    </div>
+
+
+
+
+                  </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="pagination-step" id="step2">
+                  <div class="form-group">
+
+                    <!-- BETEILIGUNG -->
+                    <div class="py-2">
+                      <label for="participationMode" class="fs-5 form-label">5. Wie beteilige ich mich an der
+                        Stadtgestaltung?</label>
+                      <div class="d-flex flex-wrap">
+                        <% for (let participationMode of participation) { %>
+                          <div class="form-check form-check-inline">
+                            <input
+                              class="form-check-input <%= participationMode === 'Gar nicht' ? 'garNichtOption' : 'otherParticipationOption' %>"
+                              type="checkbox" id="<%= participationMode %>" name="participationMode[]"
+                              value="<%= participationMode %>">
+                            <label class="form-label" for="<%= participationMode %>">
+                              <%= participationMode %>
+                            </label>
+                          </div>
+                          <% } %>
+                      </div>
+                    </div>
+
+
+
+                    <!-- BETEILIGUNGSFORMATE -->
+                    <div class="py-2 w-100" id="beteiligungsformate">
+                      <label for="format" class="fs-5 form-label">6. Welche Bürgerbeteiligungsformate kenne ich?</label>
+                      <div class="d-flex flex-wrap">
+                        <% for (let format of formats) { %>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input <%= format === 'Keins' ? 'keinsOption' : 'otherOption' %>"
+                              type="checkbox" id="<%= format %>" name="format[]" value="<%= format %>">
+                            <label class="form-label" for="<%= format %>">
+                              <%= format %>
+                            </label>
+                          </div>
+                          <% } %>
+                      </div>
+                    </div>
+
+                    <!-- ANALOG/DIGITAL -->
+                    <div class="py-2">
+                      <label for="analogueOrDigital" class="fs-5 form-label">7. Will ich in Zukunft mehr digitale oder
+                        analoge Bürgerbeteiligung?</label>
+                      <div class="d-flex flex-wrap">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" id="digital" name="analogueOrDigital"
+                            value="digital">
+                          <label class="form-check-label" for="digital">Digital</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" id="analogue" name="analogueOrDigital"
+                            value="analog">
+                          <label class="form-check-label" for="analogue">Analog</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" id="both" name="analogueOrDigital"
+                            value="beides">
+                          <label class="form-check-label" for="both">Beides</label>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <button class="btn btn-success btn-lg" type="submit"
+                      style="background-color: #F4D60D; border: solid 1px #F4D60D; color: black; font-size: 1.5rem; padding: 1rem 2rem; margin-top: 3rem;">Absenden
+                      <i class="fa-solid fa-paper-plane"></i></button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress mt-3">
+            <div class="progress-bar" id="formProgressBar" role="progressbar" style="width: 50%;" aria-valuenow="1"
+              aria-valuemin="1" aria-valuemax="2"></div>
+          </div>
+          <p class="text-center mt-2"><span id="currentStep">1</span> / 2 Schritte</p>
+          <button type="button" class="btn btn-secondary prevBtn"><i class="fa-solid fa-arrow-left"></i> Zurück</button>
+          <button type="button" class="btn btn-primary nextBtn">Weiter <i class="fa-solid fa-arrow-right"></i></button>
+
+          <button style="float: right;" class="btn btn-secondary" data-bs-dismiss="offcanvas" type="button">Abbrechen <i
+              class="fa-solid fa-xmark"></i></button>
+          <div id="alert" class="alert alert-danger" style="display: none; margin-top: 3%;"></div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <script>
+
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const keinsCheckbox = document.querySelector('.keinsOption');
+        const otherCheckboxes = document.querySelectorAll('.otherOption');
+
+        if (keinsCheckbox) {
+          keinsCheckbox.addEventListener('change', function () {
+            otherCheckboxes.forEach(cb => {
+              cb.disabled = this.checked;
+              if (this.checked) cb.checked = false;
+            });
+          });
+
+          otherCheckboxes.forEach(cb => {
+            cb.addEventListener('change', function () {
+              if (this.checked) {
+                keinsCheckbox.checked = false;
+                keinsCheckbox.dispatchEvent(new Event('change'));
+              }
+            });
+          });
+        }
+
+        const garNichtCheckbox = document.querySelector('.garNichtOption');
+        const otherParticipationCheckboxes = document.querySelectorAll('.otherParticipationOption');
+
+        if (garNichtCheckbox) {
+          garNichtCheckbox.addEventListener('change', function () {
+            otherParticipationCheckboxes.forEach(cb => {
+              cb.disabled = this.checked;
+              if (this.checked) cb.checked = false;
+            });
+          });
+
+          otherParticipationCheckboxes.forEach(cb => {
+            cb.addEventListener('change', function () {
+              if (this.checked) {
+                garNichtCheckbox.checked = false;
+                garNichtCheckbox.dispatchEvent(new Event('change'));
+              }
+            });
+          });
+        }
+      });
+
+
+
+      document.getElementById('notFromDD').addEventListener('change', function () {
+        const districtSelect = document.getElementById('stadtbezirk');
+        districtSelect.disabled = this.checked;
+      });
+
+    </script>
+
+</body>
+
+</html>

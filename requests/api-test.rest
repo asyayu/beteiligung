@@ -1,0 +1,12 @@
+POST http://localhost:11527/new/visitor
+Content-Type: application/json
+
+{
+  "age": 40,
+  "channel": ["Vor Ort"],
+  "stadtbezirk": "Blasewitz",
+  "participation": ["Kommunalpolitik"],
+  "futureReach": ["Vor Ort", "Social Media"],
+  "format": ["Bürgerforum"],
+  "aOrD": "digital"
+}

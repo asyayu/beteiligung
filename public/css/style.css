@@ -1,0 +1,357 @@
+:root {
+    font-family: 'Source Sans 3', sans-serif !important;
+}
+
+
+@keyframes wiggle {
+
+    0%,
+    90% {
+        transform: translate(0, 0);
+    }
+
+    /* Idle for 90% of the animation */
+    91%,
+    92% {
+        transform: translate(2px, 0);
+    }
+
+    /* Wiggle 1 */
+    93%,
+    94% {
+        transform: translate(-2px, 0);
+    }
+
+    /* Wiggle 2 */
+    95%,
+    96% {
+        transform: translate(2px, 0);
+    }
+
+    /* Wiggle 3 */
+    97%,
+    98% {
+        transform: translate(-2px, 0);
+    }
+
+    /* Wiggle 4 */
+    99%,
+    100% {
+        transform: translate(2px, 0);
+    }
+
+    /* Wiggle 5 */
+}
+
+
+html,
+body {
+    font-family: "Source Sans 3", sans-serif;
+}
+
+
+
+h1 {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.site-container {
+    padding: 0 3% 0 3%;
+    width: 100%;
+    height: 100vh;
+    /* overflow: hidden; */
+}
+
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    /* align-items: stretch; */
+    width: 100%;
+    height: 68vh;
+    /* box-sizing: border-box; */
+    padding: 10px;
+}
+
+.card.stat {
+    padding: 2% 0 0 2%;
+    background-color: #ffea00;
+    border: solid 1px #ffea00;
+    border-radius: 20px !important;
+}
+
+.btn-card {
+    background-color: white !important;
+    border: none !important;
+}
+
+.card img {
+    max-height: 120px;
+}
+
+
+
+#my_dataviz,
+#my_mapviz,
+#lollipop,
+#wordCloud,
+#pieChart,
+#bubblemap,
+#stackedBar {
+    border: solid 3px #F4D60D !important;
+    border-radius: 10px !important;
+}
+
+.card-header {
+    border: 0;
+    background-color: white;
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.75em !important;
+}
+
+.card-text {
+    font-size: 1.125rem;
+}
+
+.btn {
+    border-radius: 30px !important;
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+.wiggle {
+    animation: wiggle 5s infinite;
+}
+
+.wiggle:hover {
+    animation: none;
+}
+
+.diagram {
+    flex: 1 1 calc(33.333% - 10px);
+    height: 50%;
+    margin: 3px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+@media (max-width: 992px) {
+    .diagram {
+        flex: 1 1 calc(50% - 20px);
+        height: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .diagram {
+        flex: 1 1 100%;
+        height: 30%;
+    }
+}
+
+
+.label {
+    /* font-family: "Source Sans 3", sans-serif; */
+    /* font-size: 1.15rem !important; */
+    font-weight: bold;
+    fill: white !important;
+    text-shadow: 1px 1px 2px black !important;
+}
+
+
+.axis path,
+.axis line {
+    stroke: black;
+}
+
+.axis text {
+    fill: black;
+}
+
+
+circle {
+    opacity: 0.9 !important;
+}
+
+
+.ehrenamt {
+    fill: #83BEEB;
+}
+
+.beteiligungsveranstaltungenvorort {
+    fill: #a2c037;
+}
+
+.kommunalpolitik {
+    fill: #f4d60d;
+}
+
+.beteiligungsveranstaltungendigital {
+    fill: #ca4f1c;
+}
+
+.garnicht {
+    fill: #cfcfcf
+}
+
+.bar-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    fill: black !important;
+    text-shadow: 1px 1px 2px white !important;
+    text-anchor: middle;
+}
+
+.bubble-text {
+    font-size: 0.75rem;
+    font-weight: bold;
+    fill: black !important;
+    text-shadow: 1px 1px 2px white !important;
+    text-anchor: middle;
+}
+
+.stacked-bar-text {
+    font-size: 0.75rem;
+    font-weight: bold;
+    fill: black !important;
+    text-shadow: 1px 1px 2px white !important;
+    text-anchor: middle;
+}
+
+select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23000" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+
+#offcanvasExample {
+    width: 50%;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    #offcanvasExample {
+        width: 90%;
+    }
+}
+
+@media (min-width: 1920px) {
+    #offcanvasExample {
+        width: 45%;
+    }
+}
+
+/* INPUT FILTER */
+
+#lieblingsort {
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+#myUL li a {
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    cursor: pointer;
+}
+
+#myUL li a:hover:not(.header) {
+    background-color: #eee;
+}
+
+.pagination-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.pagination-wrapper {
+    display: flex;
+    width: 200%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.pagination-step {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    padding-bottom: 1%;
+}
+
+.pagination-container::-webkit-scrollbar {
+    display: none;
+}
+
+.progress-bar {
+    background-color: #F4D60D;
+    color: black;
+    font-weight: bold;
+}
+
+.d-flex.flex-wrap {
+    gap: 10px;
+}
+
+.chosen-container {
+    width: 100% !important;
+}
+
+.chosen-container .chosen-drop {
+    width: 100% !important;
+}
+
+.chosen-container-multi .chosen-choices {
+    min-height: 40px;
+    padding: 10px;
+}
+
+.alert {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.alert.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.chosen-search-input {
+    font-family: 'Source Sans 3', sans-serif !important;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-check-input:disabled+.form-label {
+    color: #6c757d;
+}
